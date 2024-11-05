@@ -1,8 +1,8 @@
-FROM centos:7
-#install httpd (web server)
-RUN yum -y install httpd
-# home page copy from /home/index.html
-COPY index.html /var/www/html/
+# Use the official Apache2 image from the Docker Hub
+FROM httpd:latest
+
+# Copy your custom index.html into the Apache's default web root directory
+COPY index.html /usr/local/apache2/htdocs/
+
+# Expose port 80 so the container can be accessed via HTTP
 EXPOSE 80
-#start web server
-CMD ["/usr/sbin/httpd","-D","FOREGROUND"]
